@@ -186,8 +186,9 @@ _disable_ipv6
 ss-display "Deploying ntpd"
 deploy_ntpd_ubuntu
 #deploy_ntpd_rhel
-ss-display "Deploying Graphite"
-deploy_graphite_ubuntu
+# FIXME: disabled, as sometimes it takes too much time to deploy.
+#ss-display "Deploying Graphite"
+#deploy_graphite_ubuntu
 #deploy_graphite_rhel
 ss-display "Deploying Riemann"
 deploy_riemann_ubuntu
