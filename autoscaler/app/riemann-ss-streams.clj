@@ -16,7 +16,8 @@
 (ss/set-elasticity-constaints "/etc/riemann/scale-constraints.edn")
 
 ;; Set up Graphite publisher.
-(ss/with-graphite)
+;; FIXME: disabled, as sometimes it takes too much time to install.
+;; (ss/with-graphite)
 
 ;; Send out tagged service metrics to graphite.
 (ss/all-tagged-to-graphite)
