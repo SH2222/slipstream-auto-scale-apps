@@ -23,6 +23,7 @@ riemann_conf_url=`ss-get riemann_config_url`
 scale_constraints_url=`ss-get scale_constraints_url`
 
 hostname=`ss-get hostname`
+ss_proxy_http_insecure=`ss-get ss_proxy_http_insecure`
 
 cat /etc/*-release*
 
@@ -129,6 +130,7 @@ deploy_riemann_ubuntu() {
 
     # Start SS run proxy service.  TODO: need to chkconfig it!
     export SERVER_PORT=$SS_PROXY_PORT
+    export HTTP_INSECURE=$ss_proxy_http_insecure
     java -jar $ss_run_proxy &
     echo "Waiting for SS run proxy to start."
     _wait_server_started http://localhost:$SERVER_PORT/can-scale

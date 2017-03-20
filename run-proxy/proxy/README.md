@@ -30,6 +30,8 @@ Starting service with uberjar and binding to 8008 on localhost
 
 ```
 $ export SERVER_PORT=8008
+$ # If SlipStream service is running with self-signed certificate use:
+$ # export HTTP_INSECURE=true
 $ java -jar SlipStreamRunProxyServer-jar-3.16-SNAPSHOT.jar
 ```
 

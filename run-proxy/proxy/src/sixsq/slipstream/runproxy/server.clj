@@ -7,6 +7,7 @@
     [compojure.route :as route]
     [clojure.data.json :as json]
     [clojure.tools.logging :as log]
+    [environ.core :as env]
 
     [ring.middleware.defaults :refer [wrap-defaults site-defaults]]
     [ring.middleware.json :refer [wrap-json-params]]
@@ -18,7 +19,12 @@
 (require '[taoensso.timbre :as tlog])
 (tlog/merge-config! {:ns-blacklist ["kvlt.*"]})
 
+(defn insecure?
+  []
+  (= "true" (env/env :http-insecure)))
+
 (ssr/contextualize!)
+(ssr/contextualize! (merge ssr/*context* {:insecure? (insecure?)}))
 
 (def status200 {:status 200 :body "success"})
 (def status400 {:status 400 :body "Bad request."})
@@ -51,7 +57,7 @@
       (when (not (and comp-name n))
         status400)
       (if (ssr/can-scale?)
-        (let [_ (log/info "Proxying scale request:" action comp-name n timeout)
+        (let [_   (log/info "Proxying scale request:" action comp-name n timeout)
               res ((scale-func action) comp-name n :timeout timeout)]
           (if (ssr/action-success? res)
             status200
