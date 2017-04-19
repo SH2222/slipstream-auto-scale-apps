@@ -12,15 +12,6 @@ deploy_collectd() {
 
     ss-display "Installing collectd."
 
-    hw_name=`uname -m`
-    cat >/etc/yum.repos.d/collectd.repo<<EOF
-[collectd-5.x]
-name=collectd-5.x
-baseurl=http://mirror.symnds.com/distributions/gf/el/6/plus/${hw_name}/
-enabled=1
-gpgcheck=0
-EOF
-
     yum install -y \
         collectd \
         collectd-write_riemann \
