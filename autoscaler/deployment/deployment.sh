@@ -106,7 +106,7 @@ deploy_riemann_ubuntu() {
     # need Ruby ~> 2.0 for json
     apt-add-repository -y ppa:brightbox/ruby-ng
     apt-get update -y
-    apt-get install -y ruby2.3
+    apt-get install -y ruby2.3 ruby2.3-dev
 
     gem install --no-ri --no-rdoc riemann-client riemann-tools riemann-dash
 
