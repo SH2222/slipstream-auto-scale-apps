@@ -4,10 +4,10 @@
   ;; Mandatory parameters.
 
   ; name of the component in the application
-  :comp-name         "webapp"
+  :comp-name         "RESTServer"
 
   ; service tags as sent by Riemann publisher in the event
-  :service-tags      ["webapp"]
+  :service-tags      ["RESTServer"]
 
   ; monitored service metric name (as sent with Riemann event)
   :service-metric    "avg_response_time"
